@@ -1,0 +1,6 @@
+framework module DLPhotoPicker {
+  umbrella header "DLPhotoPicker-umbrella.h"
+
+  export *
+  module * { export * }
+}

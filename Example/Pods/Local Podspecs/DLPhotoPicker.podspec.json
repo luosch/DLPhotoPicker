@@ -1,0 +1,32 @@
+{
+  "name": "DLPhotoPicker",
+  "version": "0.1.0",
+  "summary": "An Photo Picker for iOS",
+  "homepage": "https://github.com/luosch/DLPhotoPicker",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "luosch": "me@lsich.com"
+  },
+  "source": {
+    "git": "https://github.com/luosch/DLPhotoPicker.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "DLPhotoPicker/Classes/**/*",
+  "resource_bundles": {
+    "DLPhotoPicker": [
+      "DLPhotoPicker/Assets/**/*"
+    ]
+  },
+  "frameworks": "UIKit",
+  "dependencies": {
+    "SnapKit": [
+      "~> 4.0.0"
+    ]
+  }
+}
