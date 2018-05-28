@@ -16,7 +16,7 @@ public class DLPhotoPickerController: UINavigationController {
         if let topViewController = self.topViewController {
             return topViewController.prefersStatusBarHidden
         } else {
-            return true
+            return Util.hasSafeAreaInsets == false
         }
     }
     

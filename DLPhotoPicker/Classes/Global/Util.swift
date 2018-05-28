@@ -7,6 +7,28 @@
 
 import UIKit
 
+internal class Util {
+    
+    /// 是否有安全区Insets
+    static var hasSafeAreaInsets: Bool {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+            return UIApplication.shared.delegate?.window??.safeAreaInsets != .zero
+        }
+        return false
+    }
+    
+    /// 安全区
+    static var safeAreaInsets: UIEdgeInsets {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+            if let safeAreaInsets = UIApplication.shared.delegate?.window??.safeAreaInsets {
+                return safeAreaInsets
+            }
+        }
+        return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    }
+    
+}
+
 internal extension UIImage {
     
     convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
