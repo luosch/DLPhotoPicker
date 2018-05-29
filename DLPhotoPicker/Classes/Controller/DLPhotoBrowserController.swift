@@ -28,6 +28,7 @@ internal class DLPhotoBrowserController: UIViewController {
     private lazy var options: PHImageRequestOptions = {
         let options = PHImageRequestOptions()
         options.deliveryMode = .opportunistic
+        options.isNetworkAccessAllowed = true
         return options
     }()
     
@@ -76,7 +77,12 @@ internal class DLPhotoBrowserController: UIViewController {
     init(assets: PHFetchResult<PHAsset>, currentIndex: Int) {
         self.assets = assets
         self.currentIndex = currentIndex
+        
         super.init(nibName: nil, bundle: nil)
+        
+        self.modalTransitionStyle = .crossDissolve
+        self.modalPresentationStyle = .custom
+        self.transitioningDelegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -98,12 +104,12 @@ internal class DLPhotoBrowserController: UIViewController {
 //                                 width: UIScreen.main.bounds.width - inset.left - inset.right,
 //                                 height: UIScreen.main.bounds.height - inset.top - inset.bottom)
 //
-//        self.view.frame = CGRect(
-//            x: 0,
-//            y: 0,
-//            width: UIScreen.main.bounds.size.width,
-//            height: UIScreen.main.bounds.size.height
-//        )
+        self.view.frame = CGRect(
+            x: 0,
+            y: 0,
+            width: UIScreen.main.bounds.size.width,
+            height: UIScreen.main.bounds.size.height
+        )
         
         self.collectionView.frame = CGRect(
             x: -10.0,
@@ -114,6 +120,19 @@ internal class DLPhotoBrowserController: UIViewController {
         
         let currentIndex = self.currentIndex
         self.currentIndex = currentIndex
+    }
+    
+}
+
+// MARK: - Transtion
+extension DLPhotoBrowserController: UIViewControllerTransitioningDelegate {
+ 
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DLPhotoBrowserControllerAnimator()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DLPhotoBrowserControllerAnimator()
     }
     
 }
@@ -137,8 +156,9 @@ extension DLPhotoBrowserController: UICollectionViewDataSource, UICollectionView
             let asset = self.assets[index]
             
             self.imageManager.requestImage(for: asset, targetSize: self.thumbnailSize, contentMode: .aspectFit, options: self.options) { (image, info) in
-                print("!!!", index, image)
-                cell.imageView.image = image
+                if let image = image {
+                    cell.imageView.image = image
+                }
             }
         }
         

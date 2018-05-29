@@ -27,6 +27,7 @@ public class DLPhotoPickerController: UINavigationController {
     
     public init() {
         super.init(rootViewController: rootVC)
+        self.delegate = self
     }
     
     public override func viewDidLoad() {
@@ -35,6 +36,25 @@ public class DLPhotoPickerController: UINavigationController {
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+extension DLPhotoPickerController: UINavigationControllerDelegate {
+    
+    public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        if fromVC is DLPhotoPicker && toVC is DLPhotoBrowserController {
+            return DLPhotoBrowserControllerAnimator()
+        }
+        
+        return nil
+    }
+    
+    public func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+//        print(navigationController.self, toVC.self)
+        
+        return nil
     }
     
 }

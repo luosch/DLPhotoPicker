@@ -29,6 +29,11 @@ internal class Util {
     
 }
 
+/// Localizations
+internal func __(_ text: String) -> String {
+    return NSLocalizedString(text, tableName: "Localizations", bundle: Bundle.main, value: "", comment: "")
+}
+
 internal extension UIImage {
     
     convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {

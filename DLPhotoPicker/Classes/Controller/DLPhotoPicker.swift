@@ -10,8 +10,12 @@ import Photos
 
 internal class DLPhotoPicker: UIViewController {
 
-    /// 当前资源列表
-    private var assets = PhotosLibrary.fetchAssets()
+    /// 当前相册
+    private var currentAlbum = PhotosLibrary.fetchDefaultAlbum() {
+        didSet {
+            self.albumTitleView.title = self.currentAlbum.title
+        }
+    }
     
     /// 图片管理器
     private let imageManager = PHCachingImageManager()
@@ -40,9 +44,21 @@ internal class DLPhotoPicker: UIViewController {
         return CGSize(width: width, height: width)
     }()
     
+    /// 相册标题
+    private lazy var albumTitleView: AlbumTitleView = {
+        let view = AlbumTitleView()
+        return view
+    }()
+    
     /// 退出按钮
     private lazy var closeBarButtonItem = UIBarButtonItem(image: UIImage(asset: "Close"), style: .plain, target: self, action: #selector(didTapCloseButton(sender:)))
 
+    /// 相册选择控制器是否已显示
+    private var isAlbumPickerShowing = false
+    
+    /// 相册选择控制器
+    private lazy var albumPickerVC = DLAlbumPickerController()
+    
     /// 照片集合视图布局
     private lazy var collectionViewLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -71,6 +87,12 @@ internal class DLPhotoPicker: UIViewController {
         return collectionView
     }()
     
+    /// 转场图片
+    var didSelectImage: UIImage?
+    
+    /// 转场位置
+    var transitionStartFrame: CGRect?
+    
     /// 是否隐藏 StatusBar
     override var prefersStatusBarHidden: Bool {
         return Util.hasSafeAreaInsets == false
@@ -81,11 +103,14 @@ internal class DLPhotoPicker: UIViewController {
 
         self.setupNavBar()
         self.setupUI()
+        
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        
         self.collectionView.frame = self.view.bounds
+        self.albumPickerVC.view.frame = self.view.bounds
     }
     
 }
@@ -98,15 +123,15 @@ extension DLPhotoPicker: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.assets.count
+        return self.currentAlbum.assets.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AssetCell", for: indexPath) as! DLPhotoPickerCollectionViewCell
         
         let index = indexPath.item
-        if index >= 0 && index < self.assets.count {
-            let asset = self.assets[index]
+        if index >= 0 && index < self.currentAlbum.assets.count {
+            let asset = self.currentAlbum.assets[index]
             self.imageManager.requestImage(for: asset, targetSize: self.thumbnailSize, contentMode: .aspectFill, options: self.options) { (image, info) in
                 DispatchQueue.main.async {
                     cell.thumbnailImageView.image = image
@@ -121,9 +146,15 @@ extension DLPhotoPicker: UICollectionViewDataSource, UICollectionViewDelegate {
         collectionView.deselectItem(at: indexPath, animated: true)
         
         let index = indexPath.item
-        if index >= 0 && index < self.assets.count {
-            let asset = self.assets[index]
-            let browserVC = DLPhotoBrowserController(assets: assets, currentIndex: index)
+        if index >= 0 && index < self.currentAlbum.assets.count {
+            let cell = self.collectionView.cellForItem(at: indexPath) as! DLPhotoPickerCollectionViewCell
+            self.didSelectImage = cell.thumbnailImageView.image
+            self.transitionStartFrame = CGRect(x: cell.frame.minX,
+                                               y: cell.frame.minY + self.navigationController!.navigationBar.bounds.height + Util.safeAreaInsets.top,
+                                               width: cell.frame.width,
+                                               height: cell.frame.height)
+            
+            let browserVC = DLPhotoBrowserController(assets: self.currentAlbum.assets, currentIndex: index)
             self.navigationController?.pushViewController(browserVC, animated: true)
         }
     }
@@ -136,6 +167,17 @@ private extension DLPhotoPicker {
     /// 点击退出按钮
     @objc func didTapCloseButton(sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+ 
+    /// 点击相册标题
+    func didTapAlbumTitleView() {
+        if self.isAlbumPickerShowing == false {
+            self.albumPickerVC.showAlbumPicker()
+        } else {
+            self.albumPickerVC.hideAlbumPicker()
+        }
+        
+        self.isAlbumPickerShowing = !self.isAlbumPickerShowing
     }
     
 }
@@ -151,17 +193,38 @@ private extension DLPhotoPicker {
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = self.closeBarButtonItem
+        
+        self.albumTitleView.title = self.currentAlbum.title
+        self.albumTitleView.clickHandler = { [unowned self] in
+            self.didTapAlbumTitleView()
+        }
+        self.navigationItem.titleView = self.albumTitleView
     }
     
     /// 初始化 UI
     func setupUI() {
         self.view.backgroundColor = UIColor.white
         
-        self.navigationItem.leftBarButtonItem = closeBarButtonItem
-        
         self.view.addSubview(self.collectionView)
+        
+        // 相册选择
+        self.addChildViewController(self.albumPickerVC)
+        self.albumPickerVC.view.isHidden = true
+        self.view.addSubview(self.albumPickerVC.view)
+        
+        self.albumPickerVC.selectAlbumHandler = { [unowned self] (album) in
+            self.albumPickerVC.hideAlbumPicker()
+            self.isAlbumPickerShowing = false
+            
+            if self.currentAlbum.assets.count > 0 {
+                self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            }
+            
+            self.currentAlbum = album
+            self.collectionView.reloadData()
+        }
     }
-    
+
 }
 
 

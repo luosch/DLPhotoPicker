@@ -190,11 +190,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DLPhotoPicker_Example/Pods-DLPhotoPicker_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DLPhotoPicker/DLPhotoPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DLPhotoPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

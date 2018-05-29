@@ -28,8 +28,8 @@
     "Photos"
   ],
   "dependencies": {
-    "SnapKit": [
-      "~> 4.0.0"
+    "NVActivityIndicatorView": [
+      "~> 4.2.1"
     ]
   }
 }
