@@ -25,5 +25,5 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'Photos'
-  s.dependency 'SnapKit', '~> 4.0.0'
+  s.dependency 'NVActivityIndicatorView', '~> 4.2.1'
 end

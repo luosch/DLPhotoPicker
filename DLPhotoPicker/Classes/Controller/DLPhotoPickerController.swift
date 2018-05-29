@@ -12,6 +12,7 @@ public class DLPhotoPickerController: UINavigationController {
 
     let rootVC = DLPhotoPicker()
     
+    /// 是否隐藏 StatusBar
     public override var prefersStatusBarHidden: Bool {
         if let topViewController = self.topViewController {
             return topViewController.prefersStatusBarHidden

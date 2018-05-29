@@ -19,7 +19,9 @@
 		246E55040A3D071733137B34068201AE /* ConstraintOffsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3463E11A1205B5C35B599F4A19C31C3 /* ConstraintOffsetTarget.swift */; };
 		2B9B5ADF8349B77DC7193C5BBCA88387 /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD97CEFB74800C4A5F04ED11A13D33D5 /* ConstraintItem.swift */; };
 		32C9C88BFB7404CE6490C80B8894B398 /* ConstraintRelatableTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB1C88D7583A855F149230ABA2DF3C8 /* ConstraintRelatableTarget.swift */; };
-		40E003AE25C7F2AB0B7D0B30D58F647D /* DLPhotoPicker.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28B71B8CF28713C448784C701D027946 /* DLPhotoPicker.xcassets */; };
+		41A59B0320BCE0D300D051A7 /* DLPhotoBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A59B0220BCE0D300D051A7 /* DLPhotoBrowserController.swift */; };
+		41A59B0420BCEBAF00D051A7 /* DLPhotoPicker.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28B71B8CF28713C448784C701D027946 /* DLPhotoPicker.xcassets */; };
+		41A59B0620BCF03300D051A7 /* PhotoBrowserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A59B0520BCF03300D051A7 /* PhotoBrowserCollectionViewCell.swift */; };
 		41CF4457700FB64B32B754906245C828 /* ConstraintViewDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B058F739089B32F3323418933731ADFB /* ConstraintViewDSL.swift */; };
 		42FC07DF5B9C4EBF881426F8335AE551 /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE14A5BE5AA8350526F042EBC920BAA /* ConstraintLayoutSupport.swift */; };
 		4329C6636B525D7A44F6594B9D138F73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D3D4B1470DD0851F5F4681648EAFEC /* UIKit.framework */; };
@@ -95,7 +97,7 @@
 
 /* Begin PBXFileReference section */
 		055E57B3D323EEF6088CEED49B428226 /* DLPhotoPicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DLPhotoPicker-dummy.m"; sourceTree = "<group>"; };
-		06674666240AB419EB579EE9EB1A3101 /* DLPhotoPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DLPhotoPicker.framework; path = DLPhotoPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06674666240AB419EB579EE9EB1A3101 /* DLPhotoPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DLPhotoPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		068A4C41AD3E035EFFE7E7F568CE1EF9 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		0AF518E3C1EEA98354E7A1BB1CEC881B /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
 		0CDCAD9C1DEBA1D7A20D27B1A1942A93 /* PhotosLibrary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PhotosLibrary.swift; sourceTree = "<group>"; };
@@ -117,10 +119,12 @@
 		3ABC9D64458AB89596AC989C36546AE0 /* Typealiases.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = Source/Typealiases.swift; sourceTree = "<group>"; };
 		3BD35FFAD5D9D00693DFB90A4C0E1A51 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CEB93758D0EE5D53B4C7F8B92533975 /* DLPhotoPicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DLPhotoPicker.modulemap; sourceTree = "<group>"; };
+		41A59B0220BCE0D300D051A7 /* DLPhotoBrowserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLPhotoBrowserController.swift; sourceTree = "<group>"; };
+		41A59B0520BCF03300D051A7 /* PhotoBrowserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowserCollectionViewCell.swift; sourceTree = "<group>"; };
 		45908992EEDBCFF12244DAE9912F7228 /* UILayoutSupport+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILayoutSupport+Extensions.swift"; path = "Source/UILayoutSupport+Extensions.swift"; sourceTree = "<group>"; };
 		465909C1E34108C63AB5FBA6378D3493 /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Source/LayoutConstraint.swift; sourceTree = "<group>"; };
 		48CE3DCD5A18E652A9D4C4FCC6AEAE10 /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerEditable.swift; path = Source/ConstraintMakerEditable.swift; sourceTree = "<group>"; };
-		4AC2C33E5E2C4920DF04F6DEA48E9AB4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		4AC2C33E5E2C4920DF04F6DEA48E9AB4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5037A449D71792739FC914A72D0A7983 /* Pods-DLPhotoPicker_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DLPhotoPicker_Example.release.xcconfig"; sourceTree = "<group>"; };
 		5495F3260249C5CD5E62E6D02610A41D /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Source/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
 		55F1F08ED6F3C072E7AC9154FBDC8C4E /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
@@ -130,17 +134,17 @@
 		645061FD8BF394AC613CF4F0D51EEE0B /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
 		6A161EE943C3B9803C628E4CFC29155B /* Pods-DLPhotoPicker_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DLPhotoPicker_Example-frameworks.sh"; sourceTree = "<group>"; };
 		6AAEAFB70FF749200E347ACECD1A863B /* Pods-DLPhotoPicker_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-DLPhotoPicker_Example.modulemap"; sourceTree = "<group>"; };
-		6E86050820967D56ACF9AA647C0B7D94 /* DLPhotoPicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = DLPhotoPicker.bundle; path = "DLPhotoPicker-DLPhotoPicker.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E86050820967D56ACF9AA647C0B7D94 /* DLPhotoPicker.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DLPhotoPicker.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		76FE2CAE1FBE8D6021215ADB8C5C5F09 /* Util.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		84500528B0051C5EBBE5D8ED49BCBE89 /* Pods_DLPhotoPicker_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_DLPhotoPicker_Example.framework; path = "Pods-DLPhotoPicker_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84500528B0051C5EBBE5D8ED49BCBE89 /* Pods_DLPhotoPicker_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DLPhotoPicker_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86329B0B6351444B2C4601C042A5BE5B /* Pods-DLPhotoPicker_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DLPhotoPicker_Example-dummy.m"; sourceTree = "<group>"; };
 		8A0A4D5D85B4FAEB4C7AF868A3E48121 /* ConstraintMakerPriortizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerPriortizable.swift; path = Source/ConstraintMakerPriortizable.swift; sourceTree = "<group>"; };
 		9297EFDA2A228BE0D126B13FEC2B2AC1 /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsets.swift; path = Source/ConstraintInsets.swift; sourceTree = "<group>"; };
 		92EC67A9344FB011AC6B0CB0B1706C1C /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Source/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		950652BEECC17B934E7638BCEAED2B81 /* Pods-DLPhotoPicker_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DLPhotoPicker_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		98A74003C790EDAC85A01C48A046C926 /* DLPhotoPicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DLPhotoPicker-prefix.pch"; sourceTree = "<group>"; };
-		99338E1F83546544BF5A8451BFAA2212 /* DLPhotoPicker.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = DLPhotoPicker.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		99338E1F83546544BF5A8451BFAA2212 /* DLPhotoPicker.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = DLPhotoPicker.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AF5FAAF2F13CE5B667DCA58EF782CF6D /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Source/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
 		B058F739089B32F3323418933731ADFB /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Source/ConstraintViewDSL.swift; sourceTree = "<group>"; };
 		B06A9F3B77A688854488E0304F549374 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -149,7 +153,7 @@
 		B79A27BC78527C940B0432B88F383146 /* ResourceBundle-DLPhotoPicker-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-DLPhotoPicker-Info.plist"; sourceTree = "<group>"; };
 		B8BDCD0CDEC036E08EBEFEBDB5217C5A /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintView+Extensions.swift"; path = "Source/ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
 		C199EA523FF3AE656515DA150EE1DF69 /* Pods-DLPhotoPicker_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DLPhotoPicker_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		C814926FDFDFB6AA30515EBF0244632D /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C814926FDFDFB6AA30515EBF0244632D /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D3D4B1470DD0851F5F4681648EAFEC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		D09C8BFD80A7988D3B139768116EE2A7 /* ConstraintMakerRelatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerRelatable.swift; path = Source/ConstraintMakerRelatable.swift; sourceTree = "<group>"; };
 		D3463E11A1205B5C35B599F4A19C31C3 /* ConstraintOffsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintOffsetTarget.swift; path = Source/ConstraintOffsetTarget.swift; sourceTree = "<group>"; };
@@ -167,7 +171,7 @@
 		EEC1C0925B7A75C47F90DA4CD473E0A9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3F75E7EE36678F81FD1EC4247DB1B87 /* ConstraintMakerFinalizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerFinalizable.swift; path = Source/ConstraintMakerFinalizable.swift; sourceTree = "<group>"; };
 		F50FC11530763C0D06AA4129C6FFAB4B /* Pods-DLPhotoPicker_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DLPhotoPicker_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		FA395C6069FF0D1D4C5577D84E7E7CF7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		FA395C6069FF0D1D4C5577D84E7E7CF7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FE1FE61DC3251BBA5CD452BE8564C8E7 /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Source/ConstraintMaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -273,8 +277,9 @@
 		732E60B462A577A662F22454D8069A61 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D7B47E272BAC4EDCA421AEDF3AF0A446 /* DLPhotoPicker.swift */,
 				D5E4FF921139A65F64C253461D61DD4A /* DLPhotoPickerController.swift */,
+				D7B47E272BAC4EDCA421AEDF3AF0A446 /* DLPhotoPicker.swift */,
+				41A59B0220BCE0D300D051A7 /* DLPhotoBrowserController.swift */,
 			);
 			name = Controller;
 			path = DLPhotoPicker/Classes/Controller;
@@ -373,7 +378,6 @@
 				45908992EEDBCFF12244DAE9912F7228 /* UILayoutSupport+Extensions.swift */,
 				432313F4618A6E0D54282078B6A48A1B /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -413,6 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				DF5137EA2765A68D6BAD4EE340C91500 /* DLPhotoPickerCollectionViewCell.swift */,
+				41A59B0520BCF03300D051A7 /* PhotoBrowserCollectionViewCell.swift */,
 			);
 			name = Cell;
 			path = DLPhotoPicker/Classes/Cell;
@@ -563,6 +568,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41A59B0420BCEBAF00D051A7 /* DLPhotoPicker.xcassets in Resources */,
 				62D576FB6A94F5A7114DBCF5484EB592 /* DLPhotoPicker.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,7 +577,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40E003AE25C7F2AB0B7D0B30D58F647D /* DLPhotoPicker.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,7 +641,9 @@
 				E2392D8F1247C1D6A4622BA3107CC7CF /* DLPhotoPicker.swift in Sources */,
 				9487780C506EF64DEC879DB0FF3CB596 /* DLPhotoPickerCollectionViewCell.swift in Sources */,
 				9CBC751CD0D589C20F6CF3816B940145 /* DLPhotoPickerController.swift in Sources */,
+				41A59B0620BCF03300D051A7 /* PhotoBrowserCollectionViewCell.swift in Sources */,
 				10FCE798D6799477B60EB1E5C33C4B68 /* PhotosLibrary.swift in Sources */,
+				41A59B0320BCE0D300D051A7 /* DLPhotoBrowserController.swift in Sources */,
 				01B6B57BC95437FB52263624009BE62A /* Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

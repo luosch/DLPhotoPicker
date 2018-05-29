@@ -145,6 +145,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = GPKU5PMUNS;
 						LastSwiftMigration = 0900;
 					};
 				};
@@ -357,6 +358,7 @@
 			baseConfigurationReference = 14B67080A5F5D1C1E7B5DBDD /* Pods-DLPhotoPicker_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GPKU5PMUNS;
 				INFOPLIST_FILE = DLPhotoPicker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -373,6 +375,7 @@
 			baseConfigurationReference = 32374205BB8F18E27AD3EF9D /* Pods-DLPhotoPicker_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = GPKU5PMUNS;
 				INFOPLIST_FILE = DLPhotoPicker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
