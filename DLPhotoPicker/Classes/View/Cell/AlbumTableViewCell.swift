@@ -1,13 +1,6 @@
-//
-//  DLAlbumTableViewCell.swift
-//  DLPhotoPicker
-//
-//  Created by lsc on 2018/5/29.
-//
-
 import UIKit
 
-internal class DLAlbumTableViewCell: UITableViewCell {
+internal class AlbumTableViewCell: UITableViewCell {
 
     lazy var thumbnailImageView: UIImageView = {
         let imageView = UIImageView()

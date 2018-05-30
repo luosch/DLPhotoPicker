@@ -1,14 +1,7 @@
-//
-//  DLAlbumPickerController.swift
-//  DLPhotoPicker
-//
-//  Created by lsc on 2018/5/29.
-//
-
 import UIKit
 import Photos
 
-internal class DLAlbumPickerController: UIViewController {
+internal class AlbumPickerController: UIViewController {
 
     /// 所有相册
     private var allAlbums = [PhotoAlbum]()
@@ -21,7 +14,7 @@ internal class DLAlbumPickerController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(DLAlbumTableViewCell.self, forCellReuseIdentifier: "AlbumCell")
+        tableView.register(AlbumTableViewCell.self, forCellReuseIdentifier: "AlbumCell")
         tableView.backgroundColor = .white
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
@@ -36,6 +29,8 @@ internal class DLAlbumPickerController: UIViewController {
 
         self.setupAllAlbums()
         self.setupUI()
+        
+        PHPhotoLibrary.shared().register(self)
     }
  
     override func viewWillLayoutSubviews() {
@@ -44,8 +39,22 @@ internal class DLAlbumPickerController: UIViewController {
     
 }
 
+extension AlbumPickerController: PHPhotoLibraryChangeObserver {
+    
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        DispatchQueue.main.async {
+            for album in self.allAlbums {
+                if let detail = changeInstance.changeDetails(for: album.assets) {
+                    album.assets = detail.fetchResultAfterChanges
+                }
+            }
+        }
+    }
+    
+}
+
 // MARK: - Animation
-extension DLAlbumPickerController {
+extension AlbumPickerController {
     
     /// 显示相册选择
     func showAlbumPicker() {
@@ -78,7 +87,7 @@ extension DLAlbumPickerController {
 }
 
 // MARK: - TableView
-extension DLAlbumPickerController: UITableViewDataSource, UITableViewDelegate {
+extension AlbumPickerController: UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -93,7 +102,7 @@ extension DLAlbumPickerController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as! DLAlbumTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumCell", for: indexPath) as! AlbumTableViewCell
         
         let index = indexPath.item
         
@@ -137,7 +146,7 @@ extension DLAlbumPickerController: UITableViewDataSource, UITableViewDelegate {
 }
 
 // MARK: - Private
-private extension DLAlbumPickerController {
+private extension AlbumPickerController {
     
     /// 初始化 UI
     func setupUI() {

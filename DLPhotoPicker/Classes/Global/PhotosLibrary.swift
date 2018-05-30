@@ -80,7 +80,7 @@ internal class PhotosLibrary: NSObject {
         return items
     }
     
-    // 获取相册的资源
+    //、 获取相册的资源
     static func fetchAssets(_ collection: PHAssetCollection, mediaType: PHAssetMediaType? = nil, sortDescriptors: [NSSortDescriptor]? = nil) -> PHFetchResult<PHAsset> {
         let options = PHFetchOptions()
         
@@ -97,4 +97,12 @@ internal class PhotosLibrary: NSObject {
         let assets = PHAsset.fetchAssets(in: collection, options: options)
         return assets
     }
+    
+    /// 删除指定资源
+    static func deleteAsset(asset: PHAsset, completionHandler: ((Bool, Error?) -> Void)? = nil) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.deleteAssets([asset] as NSFastEnumeration)
+        }, completionHandler: completionHandler)
+    }
+    
 }

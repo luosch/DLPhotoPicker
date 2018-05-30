@@ -1,13 +1,6 @@
-//
-//  DLPhotoPickerCollectionViewCell.swift
-//  DLPhotoPicker
-//
-//  Created by lsc on 2018/5/28.
-//
-
 import UIKit
 
-internal class DLPhotoPickerCollectionViewCell: UICollectionViewCell {
+internal class PhotoPickerCollectionViewCell: UICollectionViewCell {
     
     lazy var thumbnailImageView: UIImageView = {
         let imageView = UIImageView()

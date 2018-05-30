@@ -1,14 +1,7 @@
-//
-//  DLPhotoPicker.swift
-//  DLPhotoPicker
-//
-//  Created by lsc on 2018/5/28.
-//
-
 import UIKit
 import Photos
 
-internal class DLPhotoPicker: UIViewController {
+internal class PhotoPicker: UIViewController {
 
     /// 当前相册
     private var currentAlbum = PhotosLibrary.fetchDefaultAlbum() {
@@ -46,7 +39,7 @@ internal class DLPhotoPicker: UIViewController {
     
     /// 相册标题
     private lazy var albumTitleView: AlbumTitleView = {
-        let view = AlbumTitleView()
+        let view = AlbumTitleView(frame: CGRect(x: 0.0, y: 0.0, width: 200.0, height: 44.0))
         return view
     }()
     
@@ -57,7 +50,7 @@ internal class DLPhotoPicker: UIViewController {
     private var isAlbumPickerShowing = false
     
     /// 相册选择控制器
-    private lazy var albumPickerVC = DLAlbumPickerController()
+    private lazy var albumPickerVC = AlbumPickerController()
     
     /// 照片集合视图布局
     private lazy var collectionViewLayout: UICollectionViewFlowLayout = {
@@ -72,7 +65,7 @@ internal class DLPhotoPicker: UIViewController {
     /// 照片集合视图
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collectionViewLayout)
-        collectionView.register(DLPhotoPickerCollectionViewCell.self, forCellWithReuseIdentifier: "AssetCell")
+        collectionView.register(PhotoPickerCollectionViewCell.self, forCellWithReuseIdentifier: "AssetCell")
         collectionView.backgroundColor = UIColor.white
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -87,11 +80,43 @@ internal class DLPhotoPicker: UIViewController {
         return collectionView
     }()
     
-    /// 转场图片
-    var didSelectImage: UIImage?
+    /// 当前图片序号
+    private var currentIndex: Int = 0
     
+    /// 转场Cell
+//    var currentCell: PhotoPickerCollectionViewCell? {
+//        if let cell = self.collectionView.cellForItem(at: IndexPath(item: self.currentIndex, section: 0)) as? PhotoPickerCollectionViewCell {
+//            return cell
+//        } else {
+//            return nil
+//        }
+//    }
+
+    /// 转场图片
+    var transitionImage: UIImage? {
+        if let cell = self.collectionView.cellForItem(at: IndexPath(item: self.currentIndex, section: 0)) as? PhotoPickerCollectionViewCell {
+            return cell.thumbnailImageView.image
+        } else {
+            return nil
+        }
+    }
+
     /// 转场位置
-    var transitionStartFrame: CGRect?
+    var transitionStartFrame: CGRect? {
+        if let attributes = self.collectionView.layoutAttributesForItem(at: IndexPath(item: self.currentIndex, section: 0)) {
+            let cellRect = attributes.frame
+            var cellFrameInSuperview = self.collectionView.convert(cellRect, to: self.view)
+            cellFrameInSuperview = CGRect(x: cellFrameInSuperview.minX,
+                                          y: cellFrameInSuperview.minY + self.navigationController!.navigationBar.bounds.height + Util.safeAreaInsets.top,
+                                          width: cellFrameInSuperview.width,
+                                          height: cellFrameInSuperview.height)
+            
+            return cellFrameInSuperview
+        } else {
+            return nil
+        }
+        
+    }
     
     /// 是否隐藏 StatusBar
     override var prefersStatusBarHidden: Bool {
@@ -104,6 +129,7 @@ internal class DLPhotoPicker: UIViewController {
         self.setupNavBar()
         self.setupUI()
         
+        PHPhotoLibrary.shared().register(self)
     }
 
     override func viewWillLayoutSubviews() {
@@ -113,10 +139,14 @@ internal class DLPhotoPicker: UIViewController {
         self.albumPickerVC.view.frame = self.view.bounds
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
 }
 
 // MARK: - CollectionView
-extension DLPhotoPicker: UICollectionViewDataSource, UICollectionViewDelegate {
+extension PhotoPicker: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -127,7 +157,7 @@ extension DLPhotoPicker: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AssetCell", for: indexPath) as! DLPhotoPickerCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AssetCell", for: indexPath) as! PhotoPickerCollectionViewCell
         
         let index = indexPath.item
         if index >= 0 && index < self.currentAlbum.assets.count {
@@ -147,22 +177,38 @@ extension DLPhotoPicker: UICollectionViewDataSource, UICollectionViewDelegate {
         
         let index = indexPath.item
         if index >= 0 && index < self.currentAlbum.assets.count {
-            let cell = self.collectionView.cellForItem(at: indexPath) as! DLPhotoPickerCollectionViewCell
-            self.didSelectImage = cell.thumbnailImageView.image
-            self.transitionStartFrame = CGRect(x: cell.frame.minX,
-                                               y: cell.frame.minY + self.navigationController!.navigationBar.bounds.height + Util.safeAreaInsets.top,
-                                               width: cell.frame.width,
-                                               height: cell.frame.height)
+//            let cell = self.collectionView.cellForItem(at: indexPath) as! PhotoPickerCollectionViewCell
             
-            let browserVC = DLPhotoBrowserController(assets: self.currentAlbum.assets, currentIndex: index)
+//            self.didSelectImage = cell.thumbnailImageView.image
+//            self.transitionStartFrame = CGRect(x: cell.frame.minX,
+//                                               y: cell.frame.minY + self.navigationController!.navigationBar.bounds.height + Util.safeAreaInsets.top,
+//                                               width: cell.frame.width,
+//                                               height: cell.frame.height)
+            self.currentIndex = index
+            let browserVC = PhotoBrowserController(assets: self.currentAlbum.assets, currentIndex: index)
             self.navigationController?.pushViewController(browserVC, animated: true)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AssetCell", for: indexPath) as! PhotoPickerCollectionViewCell
+//        guard let cell = collectionView.cellForItem(at: indexPath) as? PhotoPickerCollectionViewCell else { return }
+//
+//        let index = indexPath.item
+//        if index >= 0 && index < self.currentAlbum.assets.count {
+//            let asset = self.currentAlbum.assets[index]
+//            self.imageManager.requestImage(for: asset, targetSize: self.thumbnailSize, contentMode: .aspectFill, options: self.options) { (image, info) in
+//                DispatchQueue.main.async {
+//                    cell.thumbnailImageView.image = image
+//                }
+//            }
+//        }
     }
     
 }
 
 // MARK: - Button events
-private extension DLPhotoPicker {
+private extension PhotoPicker {
     
     /// 点击退出按钮
     @objc func didTapCloseButton(sender: Any) {
@@ -182,12 +228,27 @@ private extension DLPhotoPicker {
     
 }
 
+extension PhotoPicker: PHPhotoLibraryChangeObserver {
+    
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        DispatchQueue.main.async {
+            if let detail = changeInstance.changeDetails(for: self.currentAlbum.assets) {
+                self.currentAlbum.assets = detail.fetchResultAfterChanges
+
+                self.collectionView.reloadData()
+            }
+        }
+
+    }
+    
+}
+
 // MARK: - Private
-private extension DLPhotoPicker {
+private extension PhotoPicker {
     
     /// 初始化导航栏
     func setupNavBar() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(color: .white), for: .default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(color: UIColor(hex: 0xffffff, alpha: 1.0)), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor(hex: 0x333333)
         

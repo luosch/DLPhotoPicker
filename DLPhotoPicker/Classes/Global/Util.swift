@@ -49,7 +49,7 @@ internal extension UIImage {
     }
     
     convenience init?(asset: String) {
-        let bundle = Bundle(for: DLPhotoPicker.self)
+        let bundle = Bundle(for: PhotoPicker.self)
         self.init(named: asset, in: bundle, compatibleWith: nil)
     }
     

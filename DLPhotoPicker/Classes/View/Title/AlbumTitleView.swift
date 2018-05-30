@@ -1,10 +1,3 @@
-//
-//  AlbumTitleView.swift
-//  DLPhotoPicker
-//
-//  Created by lsc on 2018/5/29.
-//
-
 import UIKit
 
 internal class AlbumTitleView: UIView {
@@ -51,19 +44,26 @@ internal class AlbumTitleView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.titleLabel.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 20.0)
+        self.titleLabel.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: self.bounds.size.height)
         self.titleLabel.sizeToFit()
         
+        let titleLabelWidth = min((self.bounds.width-10.0-12.0), self.titleLabel.bounds.width)
+        let titleLabelHeight = min(self.titleLabel.bounds.height, self.bounds.size.height)
+        
+        self.titleLabel.frame = CGRect(x: (self.bounds.width - (titleLabelWidth + 10.0 + 12.0)) * 0.5,
+                                       y: (self.bounds.height - titleLabelHeight) * 0.5,
+                                       width: titleLabelWidth,
+                                       height: titleLabelHeight)
         
         self.indicatorImageView.frame = CGRect(x: self.titleLabel.frame.maxX + 10.0,
-                                               y: (self.titleLabel.bounds.height - 5.0) * 0.5,
+                                               y: (self.bounds.height - 5.0) * 0.5,
                                                width: 12.0,
                                                height: 5.0)
         
-        self.frame = CGRect(x: 0.0,
-                            y: 0.0,
-                            width: self.titleLabel.bounds.width + self.indicatorImageView.bounds.width + 10.0,
-                            height: self.titleLabel.bounds.height)
+//        self.frame = CGRect(x: self.frame.minX,
+//                            y: self.frame.minY,
+//                            width: self.titleLabel.bounds.width + self.indicatorImageView.bounds.width + 10.0,
+//                            height: self.titleLabel.bounds.height)
     }
     
     func setupUI() {

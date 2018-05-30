@@ -1,17 +1,10 @@
-//
-//  PhotoBrowserCollectionViewCell.swift
-//  DLPhotoPicker
-//
-//  Created by lsc on 2018/5/29.
-//
-
 import UIKit
 
 internal class PhotoBrowserCollectionViewCell: UICollectionViewCell {
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
     }()

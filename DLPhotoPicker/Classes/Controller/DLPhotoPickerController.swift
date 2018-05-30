@@ -1,16 +1,9 @@
-//
-//  DLPhotoPickerViewController.swift
-//  DLPhotoPicker
-//
-//  Created by lsc on 2018/5/28.
-//
-
 import UIKit
 import Photos
 
 public class DLPhotoPickerController: UINavigationController {
 
-    let rootVC = DLPhotoPicker()
+    let rootVC = PhotoPicker()
     
     /// 是否隐藏 StatusBar
     public override var prefersStatusBarHidden: Bool {
@@ -32,6 +25,8 @@ public class DLPhotoPickerController: UINavigationController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor.white
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -43,16 +38,19 @@ public class DLPhotoPickerController: UINavigationController {
 extension DLPhotoPickerController: UINavigationControllerDelegate {
     
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+
+        if fromVC is PhotoPicker && toVC is PhotoBrowserController {
+            return ZoomInAnimator()
+        }
         
-        if fromVC is DLPhotoPicker && toVC is DLPhotoBrowserController {
-            return DLPhotoBrowserControllerAnimator()
+        if fromVC is PhotoBrowserController && toVC is PhotoPicker {
+            return ZoomOutAnimator()
         }
         
         return nil
     }
     
     public func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-//        print(navigationController.self, toVC.self)
         
         return nil
     }
