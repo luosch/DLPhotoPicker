@@ -9,6 +9,7 @@ internal class PhotoBrowserController: UIViewController {
     /// 当前图片序号
     private var currentIndex: Int {
         didSet {
+            self.currentIndexChangeHandler?(self.currentIndex)
             self.navigationItem.title = String(format: "%d / %d", self.currentIndex+1, self.assets.count)
         }
     }
@@ -77,6 +78,9 @@ internal class PhotoBrowserController: UIViewController {
             return true
         }
     }
+    
+    /// 改变图片序号回调
+    var currentIndexChangeHandler: ((Int) -> Void)?
     
     /// 初始化
     ///

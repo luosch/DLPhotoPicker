@@ -186,6 +186,15 @@ extension PhotoPicker: UICollectionViewDataSource, UICollectionViewDelegate {
 //                                               height: cell.frame.height)
             self.currentIndex = index
             let browserVC = PhotoBrowserController(assets: self.currentAlbum.assets, currentIndex: index)
+            browserVC.currentIndexChangeHandler = { [weak self] (currentIndex) in
+                guard let `self` = self else { return }
+                self.currentIndex = currentIndex
+                
+                DispatchQueue.main.async {
+                    self.collectionView.scrollToItem(at: IndexPath(item: self.currentIndex, section: 0), at: .centeredVertically, animated: true)
+                }
+            }
+            
             self.navigationController?.pushViewController(browserVC, animated: true)
         }
     }
