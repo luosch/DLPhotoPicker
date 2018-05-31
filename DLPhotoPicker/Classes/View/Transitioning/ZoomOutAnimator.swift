@@ -23,7 +23,7 @@ class ZoomOutAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             return
         }
         
-        guard let image = fromVC.currentCell?.imageView.image, let _ = fromVC.currentCell?.frame, let endFrame = toVC.transitionStartFrame  else {
+        guard let image = fromVC.transitionImage, let endFrame = toVC.transitionStartFrame  else {
             self.animateTransitionNormally(using: transitionContext)
             return
         }
@@ -79,8 +79,6 @@ class ZoomOutAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         } else {
             transitionContext.completeTransition(true)
         }
-        
-        transitionContext.completeTransition(true)
     }
     
 }

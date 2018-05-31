@@ -81,8 +81,6 @@ internal class ZoomInAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         } else {
             transitionContext.completeTransition(true)
         }
-        
-        transitionContext.completeTransition(true)
     }
     
 }

@@ -61,10 +61,10 @@ internal class PhotoBrowserController: UIViewController {
     /// 底部 Bar
     private lazy var bottomBar = PhotoBrowserBottomBar()
     
-    /// 转场Cell
-    var currentCell: PhotoBrowserCollectionViewCell? {
+    /// 转场图片
+    var transitionImage: UIImage? {
         if let cell = self.collectionView.cellForItem(at: IndexPath(item: self.currentIndex, section: 0)) as? PhotoBrowserCollectionViewCell {
-            return cell
+            return cell.imageView.image
         } else {
             return nil
         }
@@ -136,7 +136,7 @@ internal class PhotoBrowserController: UIViewController {
         let indexPath = IndexPath(item: self.currentIndex, section: 0)
         self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
     }
-    
+
 }
 
 // MARK: - Button events
@@ -236,9 +236,7 @@ extension PhotoBrowserController: PHPhotoLibraryChangeObserver {
 private extension PhotoBrowserController {
     
     /// 初始化导航栏
-    func setupNavBar() {
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(color: UIColor(hex: 0xffffff, alpha: 0.5)), for: .default)
-        
+    func setupNavBar() {        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.navigationItem.leftBarButtonItem = self.backBarButtonItem
         

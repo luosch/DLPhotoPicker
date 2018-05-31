@@ -177,13 +177,6 @@ extension PhotoPicker: UICollectionViewDataSource, UICollectionViewDelegate {
         
         let index = indexPath.item
         if index >= 0 && index < self.currentAlbum.assets.count {
-//            let cell = self.collectionView.cellForItem(at: indexPath) as! PhotoPickerCollectionViewCell
-            
-//            self.didSelectImage = cell.thumbnailImageView.image
-//            self.transitionStartFrame = CGRect(x: cell.frame.minX,
-//                                               y: cell.frame.minY + self.navigationController!.navigationBar.bounds.height + Util.safeAreaInsets.top,
-//                                               width: cell.frame.width,
-//                                               height: cell.frame.height)
             self.currentIndex = index
             let browserVC = PhotoBrowserController(assets: self.currentAlbum.assets, currentIndex: index)
             browserVC.currentIndexChangeHandler = { [weak self] (currentIndex) in
@@ -273,8 +266,6 @@ private extension PhotoPicker {
     
     /// 初始化 UI
     func setupUI() {
-        self.view.backgroundColor = UIColor.white
-        
         self.view.addSubview(self.collectionView)
         
         // 相册选择
