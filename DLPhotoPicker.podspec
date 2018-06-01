@@ -1,6 +1,5 @@
 Pod::Spec.new do |s|
   s.name             = 'DLPhotoPicker'
-  s.module_name      = 'DLPhotoPicker'
   s.version          = '0.1.0'
   s.summary          = 'An Photo Picker for iOS'
 
