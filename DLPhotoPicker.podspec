@@ -1,13 +1,6 @@
-#
-# Be sure to run `pod lib lint DLPhotoPicker.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = 'DLPhotoPicker'
+  s.module_name      = 'DLPhotoPicker'
   s.version          = '0.1.0'
   s.summary          = 'An Photo Picker for iOS'
 
@@ -15,15 +8,13 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'luosch' => 'me@lsich.com' }
   s.source           = { :git => 'https://github.com/luosch/DLPhotoPicker.git', :tag => s.version.to_s }
+  
   s.ios.deployment_target = '8.0'
+  s.swift_version = '4.1'
 
   s.source_files = 'DLPhotoPicker/Classes/**/*'
-  
-  s.resource_bundles = {
-    'DLPhotoPicker' => ['DLPhotoPicker/Assets/**/*']
-  }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  s.resources = 'DLPhotoPicker/Assets/**/*'
   s.frameworks = 'UIKit', 'Photos'
   s.dependency 'NVActivityIndicatorView', '~> 4.2.1'
 end

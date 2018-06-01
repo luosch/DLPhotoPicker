@@ -2,6 +2,5 @@ use_frameworks!
 
 target 'DLPhotoPicker_Example' do
   pod 'DLPhotoPicker', :path => '../'
-  
   pod 'SnapKit'
 end
